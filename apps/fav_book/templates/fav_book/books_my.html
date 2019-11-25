@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>   
+<div class="container">
+    <div class="row clearfix">
+        <div>
+            <h2>Welcome,{{firstname}}！</h2>
+        </div>
+    </div>
+	<div class="row clearfix">
+        <div class="col-md-4 column">
+            <form action="Placeholder">
+                <input type="text" placeholder="{{title}}">
+            <p>Added by:{{uploader.first_name}}{{uploader.last_name}}</p>
+            <p>Added on:{{uploader.created_at}}</p>
+            <p>Last updated on:{{uploader.updated_at}}</p>
+            <p>Description:</p>
+            <textarea name="{{Description}}" id="" cols="30" rows="10"></textarea><br><br><br><br>
+            <input type="submit" value="Update">
+            
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    <div class="col-md-4 column">
+        <div class="float-right">
+            <a href="Placeholder">Log Out</a>
+        </div><br><br>
+            <h5>
+				Users Who Like This Book:
+			</h5>
+            {for b in liked_books}
+            {{b.title}} <a href="unlikethisbook">Un-favorite</a>
+            {endfor}
+            
+            {for i in all_books}
+            {{i.title}}
+            {endfor}
+		</div>
+	</div>
+</div>
+</body>
+</html>

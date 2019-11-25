@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+        <p>报错：</p>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+<div class="container">
+    <div class="row clearfix">
+        <div>
+            <h2>Welcome,{{firstname}}！</h2>
+        </div>
+        <div>
+            <a href="/logout">Log Out</a>
+        </div>
+    </div>
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+			<form action="/add_book" method="POST">
+                {% csrf_token %}
+            <p >Title</p>
+            <input type="text" name="title">
+            <p>Description</p>
+            <textarea name="description" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="Add">
+            </form>
+		</div>
+		<div class="col-md-4 column">
+			<h5>
+				All Books
+            </h5><br>
+
+            {% for b in allbooks %}
+            <p><a href="/all_mybooks/{{i.id}}">{{i.title}}</a></p>
+            <p>{{i.uploaded_by.first_name}}</p>
+            {% if i in user_liked_books %}
+            <p>this is one of your favorites</p><br>
+            {% else %}
+            <a href="/add_to_fav/{{i.id}}">Add Favorites</a><br><br><br>
+            {% endif%}
+            {% endfor %}
+		</div>
+	</div>
+</div>
+</body>
+</html>
